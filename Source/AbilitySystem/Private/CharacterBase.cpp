@@ -17,6 +17,7 @@ ACharacterBase::ACharacterBase()
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+	AttributeSetBaseComp->OnHealthChange.AddDynamic(this, &ACharacterBase::OnHealthChanged);
 	
 }
 
@@ -50,4 +51,14 @@ void ACharacterBase::AcquireAbility(TSubclassOf<UGameplayAbility> AbilityToAquir
 		AbilitySystemComp->InitAbilityActorInfo(this, this);
 
 	}
+}
+
+void ACharacterBase::OnHealthChanged(float Health, float MaxHealth)
+{
+	if (Health <= 0.0f && bDead == false)
+	{
+		bDead = true;
+		BP_Die();
+	}
+	BP_OnHealthChanged(Health, MaxHealth);
 }
