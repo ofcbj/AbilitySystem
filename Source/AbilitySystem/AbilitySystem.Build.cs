@@ -14,13 +14,10 @@ public class AbilitySystem : ModuleRules
 			"Engine", 
 			"InputCore", 
 			"HeadMountedDisplay", 
-			"PythonScriptPlugin"
-//			"GameplayAbilities"
-		});
-
-		PrivateDependencyModuleNames.AddRange(new string[] {
+			"PythonScriptPlugin",
 			"GameplayAbilities", 
 			"GameplayTags", 
-			"GameplayTasks" });
+			"GameplayTasks"
+		});
 	}
 }
