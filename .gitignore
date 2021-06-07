@@ -1,0 +1,10 @@
+.vs/*
+Binaries/*
+Saved/*
+DerivedDataCache/*
+Intermediate/AssetRegistryCache/*
+Intermediate/Build/*
+Intermediate/Config/*
+Intermediate/ReimportCache/*
+Intermediate/PythonStub/*
+Intermediate/CachedAssetRegistry.bin

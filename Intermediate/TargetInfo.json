@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "AbilitySystem",
+			"Path": "D:\\unreal_study\\AbilitySystem\\Source\\AbilitySystem.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "AbilitySystemEditor",
+			"Path": "D:\\unreal_study\\AbilitySystem\\Source\\AbilitySystemEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
