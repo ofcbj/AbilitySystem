@@ -21,6 +21,10 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	AttributeSetBaseComp->OnHealthChange.AddDynamic(this, &ACharacterBase::OnHealthChanged);
+	AttributeSetBaseComp->OnManaChange.AddDynamic(this, &ACharacterBase::OnManaChanged);
+	AttributeSetBaseComp->OnStrengthChange.AddDynamic(this, &ACharacterBase::OnStrengthChanged);
+
+	AddGameplayTag(FullHealthTag);
 	
 }
 
@@ -65,6 +69,27 @@ void ACharacterBase::OnHealthChanged(float Health, float MaxHealth)
 		Dead();
 	}
 	BP_OnHealthChanged(Health, MaxHealth);
+}
+
+void ACharacterBase::OnManaChanged(float Mana, float MaxMana)
+{
+	BP_OnManaChanged(Mana, MaxMana);
+}
+
+void ACharacterBase::OnStrengthChanged(float Strength, float MaxStrength)
+{
+	BP_OnStrengthChanged(Strength, MaxStrength);
+}
+
+void ACharacterBase::AddGameplayTag(FGameplayTag& TagToAdd)
+{
+	GetAbilitySystemComponent()->AddLooseGameplayTag(TagToAdd);
+	GetAbilitySystemComponent()->SetTagMapCount(TagToAdd, 1);
+}
+
+void ACharacterBase::RemoveGameplayTag(FGameplayTag& TagToRemove)
+{
+	GetAbilitySystemComponent()->RemoveLooseGameplayTag(TagToRemove);
 }
 
 void ACharacterBase::Dead()

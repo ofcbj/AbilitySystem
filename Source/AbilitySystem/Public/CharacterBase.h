@@ -47,8 +47,29 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnHealthChanged"))
 	void BP_OnHealthChanged(float Health, float MaxHealth);
 
+	UFUNCTION()
+	void OnManaChanged(float Mana, float MaxMana);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnManaChanged"))
+	void BP_OnManaChanged(float Mana, float MaxMana);
+
+	UFUNCTION()
+	void OnStrengthChanged(float Strength, float MaxStrength);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnStrengthChanged"))
+	void BP_OnStrengthChanged(float Strength, float MaxStrength);
+
 	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "Die"))
 	void BP_Die();
+
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	void AddGameplayTag(FGameplayTag& TagToAdd);
+
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	void RemoveGameplayTag(FGameplayTag& TagToRemove);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+	FGameplayTag FullHealthTag;
 
 protected:
 	bool bDead = false;
