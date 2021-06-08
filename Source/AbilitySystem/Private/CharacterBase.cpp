@@ -3,6 +3,9 @@
 
 #include "CharacterBase.h"
 #include "AttributeSetBase.h"
+#include "GameFramework/PlayerController.h"
+#include "AiController.h"
+#include "BrainComponent.h"
 // Sets default values
 ACharacterBase::ACharacterBase()
 {
@@ -59,6 +62,21 @@ void ACharacterBase::OnHealthChanged(float Health, float MaxHealth)
 	{
 		bDead = true;
 		BP_Die();
+		Dead();
 	}
 	BP_OnHealthChanged(Health, MaxHealth);
+}
+
+void ACharacterBase::Dead()
+{
+	APlayerController* Pc =Cast<APlayerController>(GetController());
+	if (Pc)
+	{
+		Pc->DisableInput(Pc);
+	}
+	AAIController* AIC = Cast<AAIController>(GetController());
+	if (AIC)
+	{
+		AIC->GetBrainComponent()->StopLogic(TEXT("Dead"));
+	}
 }

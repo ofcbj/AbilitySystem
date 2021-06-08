@@ -17,7 +17,8 @@ public class AbilitySystem : ModuleRules
 			"PythonScriptPlugin",
 			"GameplayAbilities", 
 			"GameplayTags", 
-			"GameplayTasks"
+			"GameplayTasks",
+			"AIModule"
 		});
 	}
 }

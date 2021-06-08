@@ -52,4 +52,5 @@ public:
 
 protected:
 	bool bDead = false;
+	void Dead();
 };
