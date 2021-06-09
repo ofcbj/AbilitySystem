@@ -92,6 +92,18 @@ void ACharacterBase::RemoveGameplayTag(FGameplayTag& TagToRemove)
 	GetAbilitySystemComponent()->RemoveLooseGameplayTag(TagToRemove);
 }
 
+bool ACharacterBase::IsOtherHostile(ACharacterBase* Other)
+{
+	if (this->TeamID == Other->TeamID)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 void ACharacterBase::Dead()
 {
 	APlayerController* Pc =Cast<APlayerController>(GetController());

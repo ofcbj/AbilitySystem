@@ -71,6 +71,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	FGameplayTag FullHealthTag;
 
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	bool IsOtherHostile(ACharacterBase* Other);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+	int TeamID;
+
 protected:
 	bool bDead = false;
 	void Dead();
