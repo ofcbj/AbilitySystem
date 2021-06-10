@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "AbilitySystemComponent.h"
+#include "PlayerControllerBase.h"
+#include "GameplayAbilityBase.h"
 #include "CharacterBase.generated.h"
 
 class UAttributeSetBase;
@@ -40,6 +42,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	void AcquireAbility(TSubclassOf<UGameplayAbility> AbilityToAquire);
+
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	void AcquireAbilities(TArray<TSubclassOf<UGameplayAbility>> AbilityToAquire);
 
 	UFUNCTION()
 	void OnHealthChanged(float Health, float MaxHealth);
@@ -77,7 +82,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	int TeamID;
 
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	void HitStun(float StunDruation);
+
 protected:
 	bool bDead = false;
 	void Dead();
+	void DisableInputControl();
+	void EnableInputControl();
+	FTimerHandle StunTimeHandle;
+	void AddAbilityToUI(TSubclassOf<UGameplayAbilityBase> AbilityToAdd);
 };

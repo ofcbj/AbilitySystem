@@ -3,7 +3,6 @@
 
 #include "CharacterBase.h"
 #include "AttributeSetBase.h"
-#include "GameFramework/PlayerController.h"
 #include "AiController.h"
 #include "BrainComponent.h"
 // Sets default values
@@ -60,6 +59,22 @@ void ACharacterBase::AcquireAbility(TSubclassOf<UGameplayAbility> AbilityToAquir
 	}
 }
 
+void ACharacterBase::AcquireAbilities(TArray<TSubclassOf<UGameplayAbility>> AbilityToAquire)
+{
+	for (TSubclassOf<UGameplayAbility> AbilityItem : AbilityToAquire)
+	{
+		AcquireAbility(AbilityItem);
+		if (AbilityItem->IsChildOf(UGameplayAbility::StaticClass()))
+		{
+			TSubclassOf<UGameplayAbilityBase> AbilityBaseClass = *AbilityItem;
+			if (AbilityBaseClass != nullptr)
+			{
+				AddAbilityToUI(AbilityBaseClass);
+			}
+		}
+	}
+}
+
 void ACharacterBase::OnHealthChanged(float Health, float MaxHealth)
 {
 	if (Health <= 0.0f && bDead == false)
@@ -106,7 +121,12 @@ bool ACharacterBase::IsOtherHostile(ACharacterBase* Other)
 
 void ACharacterBase::Dead()
 {
-	APlayerController* Pc =Cast<APlayerController>(GetController());
+	DisableInputControl();
+}
+
+void ACharacterBase::DisableInputControl()
+{
+	APlayerController* Pc = Cast<APlayerController>(GetController());
 	if (Pc)
 	{
 		Pc->DisableInput(Pc);
@@ -116,4 +136,41 @@ void ACharacterBase::Dead()
 	{
 		AIC->GetBrainComponent()->StopLogic(TEXT("Dead"));
 	}
+}
+
+void ACharacterBase::EnableInputControl()
+{
+	if (!bDead)
+	{
+		APlayerController* Pc = Cast<APlayerController>(GetController());
+		if (Pc)
+		{
+			Pc->EnableInput(Pc);
+		}
+		AAIController* AIC = Cast<AAIController>(GetController());
+		if (AIC)
+		{
+			AIC->GetBrainComponent()->RestartLogic();
+		}
+	}
+}
+
+void ACharacterBase::AddAbilityToUI(TSubclassOf<UGameplayAbilityBase> AbilityToAdd)
+{
+	APlayerControllerBase* PlayerControllerBase = Cast<APlayerControllerBase>(GetController());
+	if (PlayerControllerBase)
+	{
+		UGameplayAbilityBase* AbilityInstance = AbilityToAdd.Get()->GetDefaultObject<UGameplayAbilityBase>();
+		if (AbilityInstance)
+		{
+			FGameplayAbilityInfo AbilityInfo = AbilityInstance->GetAbilityInfo();
+			PlayerControllerBase->AddAbilityToUI(AbilityInfo);
+		}
+	}
+}
+
+void ACharacterBase::HitStun(float StunDruation)
+{
+	DisableInputControl();
+	GetWorldTimerManager().SetTimer(StunTimeHandle, this, &ACharacterBase::EnableInputControl, StunDruation, false);
 }
