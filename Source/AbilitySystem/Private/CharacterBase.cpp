@@ -126,13 +126,13 @@ void ACharacterBase::Dead()
 
 void ACharacterBase::DisableInputControl()
 {
-	APlayerController* Pc = Cast<APlayerController>(GetController());
-	if (Pc)
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
 	{
-		Pc->DisableInput(Pc);
+		PC->DisableInput(PC);
 	}
 	AAIController* AIC = Cast<AAIController>(GetController());
-	if (AIC)
+	if (AIC && AIC->GetBrainComponent())
 	{
 		AIC->GetBrainComponent()->StopLogic(TEXT("Dead"));
 	}
@@ -142,13 +142,13 @@ void ACharacterBase::EnableInputControl()
 {
 	if (!bDead)
 	{
-		APlayerController* Pc = Cast<APlayerController>(GetController());
-		if (Pc)
+		APlayerController* PC = Cast<APlayerController>(GetController());
+		if (PC)
 		{
-			Pc->EnableInput(Pc);
+			PC->EnableInput(PC);
 		}
 		AAIController* AIC = Cast<AAIController>(GetController());
-		if (AIC)
+		if (AIC && AIC->GetBrainComponent())
 		{
 			AIC->GetBrainComponent()->RestartLogic();
 		}
