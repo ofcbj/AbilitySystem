@@ -73,17 +73,20 @@ FString UPyFunction::GetPropStr(FProperty* PropIt, UObject* Object)
 		if (Prop->Struct->GetName() == "Vector")
 		{
 			FVector* Vec = Prop->ContainerPtrToValuePtr<FVector>(Object);
-			return FString::Format(TEXT("({0}, {1}, {2})"), { Vec->X, Vec->Y, Vec->Z });
+			return Vec->ToString();
+			//return FString::Format(TEXT("({0}, {1}, {2})"), { Vec->X, Vec->Y, Vec->Z });
 		}
 		else if (Prop->Struct->GetName() == "Rotator")
 		{
 			FRotator* Rot = Prop->ContainerPtrToValuePtr<FRotator>(Object);
-			return FString::Format(TEXT("({0}, {1}, {2})"), { Rot->Yaw, Rot->Pitch, Rot->Roll });
+			return Rot->ToString();
+			//return FString::Format(TEXT("({0}, {1}, {2})"), { Rot->Yaw, Rot->Pitch, Rot->Roll });
 		}
 		else if (Prop->Struct->GetName() == "Quat")
 		{
 			FQuat* Quat = Prop->ContainerPtrToValuePtr<FQuat>(Object);
-			return FString::Format(TEXT("({0}, {1}, {2}, {3})"), { Quat->X, Quat->Y, Quat->Z, Quat->W });
+			return Quat->ToString();
+			//return FString::Format(TEXT("({0}, {1}, {2}, {3})"), { Quat->X, Quat->Y, Quat->Z, Quat->W });
 		}
 		else if (Prop->Struct->GetName() == "GameplayAttributeData")
 		{
