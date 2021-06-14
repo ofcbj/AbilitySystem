@@ -174,3 +174,25 @@ void ACharacterBase::HitStun(float StunDruation)
 	DisableInputControl();
 	GetWorldTimerManager().SetTimer(StunTimeHandle, this, &ACharacterBase::EnableInputControl, StunDruation, false);
 }
+
+FVector ACharacterBase::GetLookingPoint()
+{
+	FVector ViewPoint;
+	FRotator ViewRotation;
+	GetController()->GetPlayerViewPoint(ViewPoint, ViewRotation);
+	FHitResult HitResult;
+	FCollisionQueryParams QueryParams;
+	QueryParams.bTraceComplex = true;
+	QueryParams.AddIgnoredActor(GetUniqueID());
+
+	FVector LookAtPoint = FVector();
+	bool TryTrace = GetWorld()->LineTraceSingleByChannel(HitResult, ViewPoint, ViewPoint + ViewRotation.Vector()*10000.0f, ECC_Visibility, QueryParams);
+	if (TryTrace)
+	{
+		return HitResult.ImpactPoint;
+	}
+	else
+	{
+		return FVector::ZeroVector;
+	}
+}

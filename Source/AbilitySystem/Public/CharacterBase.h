@@ -85,6 +85,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	void HitStun(float StunDruation);
 
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	FVector GetLookingPoint();
+
 protected:
 	bool bDead = false;
 	void Dead();

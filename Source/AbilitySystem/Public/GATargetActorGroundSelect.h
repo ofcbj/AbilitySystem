@@ -6,6 +6,8 @@
 #include "Abilities/GameplayAbilityTargetActor.h"
 #include "GATargetActorGroundSelect.generated.h"
 
+class UDecalComponent;
+class USceneComponent;
 /**
  * 
  */
@@ -19,9 +21,14 @@ public:
 	void StartTargeting(UGameplayAbility* Ability) override;
 	void ConfirmTargetingAndContinue() override;
 	void Tick(float DeltaSeconds) override;
-	UFUNCTION(BlueprintCallable, Category = "GroundSelect")
-	bool GetPlayerLookingPoint(FVector& OutViewPoint);
+	FVector GetPlayerLookingPoint();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ExposeOnSpawn=true), Category = "GroundSelect")
 	float Radius;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "GroundBlast")
+	UDecalComponent* Decal;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "GroundBlast")
+	USceneComponent* RootComp;
 };
