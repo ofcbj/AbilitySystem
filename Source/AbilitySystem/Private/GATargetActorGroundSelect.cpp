@@ -72,6 +72,7 @@ void AGATargetActorGroundSelect::ConfirmTargetingAndContinue()
 	if (OverlapedActors.Num() > 0)
 	{
 		FGameplayAbilityTargetDataHandle TargetData = StartLocation.MakeTargetDataHandleFromActors(OverlapedActors);
+		TargetData.Add(CenterLocation);
 		TargetDataReadyDelegate.Broadcast(TargetData);
 	}
 	else
