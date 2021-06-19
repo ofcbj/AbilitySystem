@@ -96,13 +96,13 @@ void ACharacterBase::OnStrengthChanged(float Strength, float MaxStrength)
 	BP_OnStrengthChanged(Strength, MaxStrength);
 }
 
-void ACharacterBase::AddGameplayTag(FGameplayTag& TagToAdd)
+void ACharacterBase::AddGameplayTag(FGameplayTag TagToAdd)
 {
 	GetAbilitySystemComponent()->AddLooseGameplayTag(TagToAdd);
 	GetAbilitySystemComponent()->SetTagMapCount(TagToAdd, 1);
 }
 
-void ACharacterBase::RemoveGameplayTag(FGameplayTag& TagToRemove)
+void ACharacterBase::RemoveGameplayTag(FGameplayTag TagToRemove)
 {
 	GetAbilitySystemComponent()->RemoveLooseGameplayTag(TagToRemove);
 }
@@ -195,4 +195,9 @@ FVector ACharacterBase::GetLookingPoint()
 	{
 		return FVector::ZeroVector;
 	}
+}
+
+bool ACharacterBase::IsDead()
+{
+	return bDead;
 }

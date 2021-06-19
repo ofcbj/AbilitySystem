@@ -68,10 +68,10 @@ public:
 	void BP_Die();
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
-	void AddGameplayTag(FGameplayTag& TagToAdd);
+	void AddGameplayTag(FGameplayTag TagToAdd);
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
-	void RemoveGameplayTag(FGameplayTag& TagToRemove);
+	void RemoveGameplayTag(FGameplayTag TagToRemove);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	FGameplayTag FullHealthTag;
@@ -87,6 +87,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	FVector GetLookingPoint();
+
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	bool IsDead();
 
 protected:
 	bool bDead = false;

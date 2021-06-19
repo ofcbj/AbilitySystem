@@ -50,7 +50,7 @@ DWORD WINAPI RunNamedPipe(VOID* pDatea)
 		{
 			::Sleep(0.1f);
 		}
-		::Sleep(0.5f);
+		::Sleep(1.0f);
 		while (s_RetList.IsEmpty() == false)
 		{
 			std::wstring wStr = *(*s_RetList.Peek());

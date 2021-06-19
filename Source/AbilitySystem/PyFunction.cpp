@@ -1,10 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "PyFunction.h"
 
+#include "Kismet/KismetStringLibrary.h"
+#include "Misc/OutputDeviceNull.h"
 #include "Kismet/GameplayStatics.h"
 #include "AttributeSet.h"
-
-#include "PyFunction.h"
 
 using namespace std;
 
@@ -13,6 +14,23 @@ static UWorld* s_World = nullptr;
 void UPyFunction::SetWorld(UWorld* World)
 {
 	s_World = World;
+}
+
+AActor* UPyFunction::FindActor(FString ActorLabel)
+{
+	AActor* ActorRet = nullptr;
+	TArray<AActor*> ArrOutActors;
+	UGameplayStatics::GetAllActorsOfClass(s_World, AActor::StaticClass(), ArrOutActors);
+	for (int i = 0; i < ArrOutActors.Num(); ++i)
+	{
+		AActor* Actor = ArrOutActors[i];
+		if (Actor->GetActorLabel() == ActorLabel)
+		{
+			ActorRet = Actor;
+			break;
+		}
+	}
+	return ActorRet;
 }
 
 FString UPyFunction::GetPropStr(FProperty* PropIt, UObject* Object)
@@ -74,19 +92,16 @@ FString UPyFunction::GetPropStr(FProperty* PropIt, UObject* Object)
 		{
 			FVector* Vec = Prop->ContainerPtrToValuePtr<FVector>(Object);
 			return Vec->ToString();
-			//return FString::Format(TEXT("({0}, {1}, {2})"), { Vec->X, Vec->Y, Vec->Z });
 		}
 		else if (Prop->Struct->GetName() == "Rotator")
 		{
 			FRotator* Rot = Prop->ContainerPtrToValuePtr<FRotator>(Object);
 			return Rot->ToString();
-			//return FString::Format(TEXT("({0}, {1}, {2})"), { Rot->Yaw, Rot->Pitch, Rot->Roll });
 		}
 		else if (Prop->Struct->GetName() == "Quat")
 		{
 			FQuat* Quat = Prop->ContainerPtrToValuePtr<FQuat>(Object);
 			return Quat->ToString();
-			//return FString::Format(TEXT("({0}, {1}, {2}, {3})"), { Quat->X, Quat->Y, Quat->Z, Quat->W });
 		}
 		else if (Prop->Struct->GetName() == "GameplayAttributeData")
 		{
@@ -95,7 +110,6 @@ FString UPyFunction::GetPropStr(FProperty* PropIt, UObject* Object)
 		}
 		else
 		{
-			//return FString::Format(TEXT("{0}"), { Prop->Struct->GetStructCPPName() });
 			return TEXT("Struct");
 		}
 	}
@@ -103,12 +117,12 @@ FString UPyFunction::GetPropStr(FProperty* PropIt, UObject* Object)
 	{
 		FObjectProperty* Prop = CastChecked<FObjectProperty>(PropIt);
 		UObject* ChildObject = *Prop->GetPropertyValuePtr_InContainer(Object);
-		FString ObjectName = TEXT("NULL");
+		FString ActorLabel = TEXT("NULL");
 		if (ChildObject != nullptr)
 		{
-			ChildObject->GetName(ObjectName);
+			ChildObject->GetName(ActorLabel);
 		}
-		return FString::Format(TEXT("{0}"), { ObjectName });
+		return FString::Format(TEXT("{0}"), { ActorLabel });
 	}
 	else
 	{
@@ -153,6 +167,30 @@ bool UPyFunction::SetPropStr(FProperty* PropIt, UObject* Object, FString Value)
 	{
 		FByteProperty* Prop = CastChecked<FByteProperty>(PropIt);
 		Prop->SetPropertyValue_InContainer(Object, FCString::Atoi(*Value));
+	}
+	else if (PropIt->IsA(FStructProperty::StaticClass()))
+	{
+		FStructProperty* Prop = CastChecked<FStructProperty>(PropIt);
+		if (Prop->Struct->GetName() == "Vector")
+		{
+			FVector* Vec = Prop->ContainerPtrToValuePtr<FVector>(Object);
+			Vec->InitFromString(Value);
+		}
+		else if (Prop->Struct->GetName() == "Rotator")
+		{
+			FRotator* Rot = Prop->ContainerPtrToValuePtr<FRotator>(Object);
+			Rot->InitFromString(Value);
+		}
+		else if (Prop->Struct->GetName() == "Quat")
+		{
+			FQuat* Quat = Prop->ContainerPtrToValuePtr<FQuat>(Object);
+			Quat->InitFromString(Value);
+		}
+		else if (Prop->Struct->GetName() == "GameplayAttributeData")
+		{
+			FGameplayAttributeData* Data = Prop->ContainerPtrToValuePtr<FGameplayAttributeData>(Object);
+			Data->SetCurrentValue(FCString::Atof(*Value));
+		}
 	}
 
 	return true;
@@ -245,18 +283,25 @@ UObject* UPyFunction::GetChildObject(UObject* Parent, FString Name)
 	return Child;
 }
 
-FString UPyFunction::GetProp(FString FindObjectName, FString PropHierarchy)
+bool UPyFunction::CallBP(FString ActorLabel, FString FuncAndArg)
 {
-	UObject* Object = nullptr;
-	TArray<AActor*> ArrOutActors;
-	UGameplayStatics::GetAllActorsOfClass(s_World, AActor::StaticClass(), ArrOutActors);
-	for (int i = 0; i < ArrOutActors.Num(); ++i)
+	UObject* Object = FindActor(ActorLabel);
+	if (Object)
 	{
-		AActor* Actor = ArrOutActors[i];
-		if (Actor->GetActorLabel() == FindObjectName)
-			Object = Actor;
+		FOutputDeviceNull ar;
+		FString NewStr = FuncAndArg;
+		Object->CallFunctionByNameWithArguments(*NewStr, ar, NULL, true);
+		return true;
 	}
+	else
+	{
+		return false;
+	}
+}
 
+FString UPyFunction::GetProp(FString ActorLabel, FString PropHierarchy)
+{
+	UObject* Object = FindActor(ActorLabel);
 	if (Object == nullptr)
 	{
 		return FString("None");
@@ -309,17 +354,9 @@ UObject* UPyFunction::GetLeaf(UObject* Root, FString PropHierarchy, FString& Out
 	return LeafObject;
 }
 
-bool UPyFunction::SetProp(FString FindObjectName, FString PropHierarchy, FString Value)
+bool UPyFunction::SetProp(FString ActorLabel, FString PropHierarchy, FString Value)
 {
-	UObject* Object = nullptr;
-	TArray<AActor*> ArrOutActors;
-	UGameplayStatics::GetAllActorsOfClass(s_World, AActor::StaticClass(), ArrOutActors);
-	for (int i = 0; i < ArrOutActors.Num(); ++i)
-	{
-		AActor* Actor = ArrOutActors[i];
-		if (Actor->GetActorLabel() == FindObjectName)
-			Object = Actor;
-	}
+	UObject* Object = FindActor(ActorLabel);
 
 	if (Object == nullptr)
 	{
@@ -337,3 +374,4 @@ bool UPyFunction::SetProp(FString FindObjectName, FString PropHierarchy, FString
 		return SetPropStr(LeafObject, LeafName, Value);
 	}
 }
+
