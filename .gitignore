@@ -2,9 +2,9 @@
 Binaries/*
 Saved/*
 DerivedDataCache/*
-Intermediate/AssetRegistryCache/*
-Intermediate/Build/*
-Intermediate/Config/*
-Intermediate/ReimportCache/*
-Intermediate/PythonStub/*
-Intermediate/CachedAssetRegistry.bin
+Intermediate/*
+Content/EnvironmentPack2/Maps/DemoMap1_BuiltData.uasset
+Content/EnvironmentPack2/Maps/DemoMap2_BuiltData.uasset
+Content/EnvironmentPack2/Maps/DemoMap3_BuiltData.uasset
+Content/InfinityBladeEffects/*
+Content/InfinityBladeWeapons/*
