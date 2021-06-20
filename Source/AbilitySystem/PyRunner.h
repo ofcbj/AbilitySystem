@@ -9,7 +9,7 @@ UCLASS()
 class APyRunner : public ACharacter
 {
 	GENERATED_BODY()
-
+	APyRunner();
 	bool ShouldTickIfViewportsOnly() const override { return true; };
 public:
 	void Tick(float DeltaTime) override;

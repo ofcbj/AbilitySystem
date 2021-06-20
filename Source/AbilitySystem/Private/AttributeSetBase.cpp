@@ -8,7 +8,6 @@ UAttributeSetBase::UAttributeSetBase()
 	Mana(100.0f), MaxMana(100.0f),
 	Strength(200.0f), MaxStrength(250.0f)
 {
-	
 }
 
 void UAttributeSetBase::PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)

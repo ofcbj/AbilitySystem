@@ -15,8 +15,14 @@ TQueue<FString> s_RetList;
 void initPipe();
 void updatePipe();
 
+APyRunner::APyRunner()
+{
+	PrimaryActorTick.bTickEvenWhenPaused = TRUE;
+}
+
 void APyRunner::Tick(float DeltaTime)
 {
+	
 	if (s_hPipe == NULL)
 	{
 		initPipe();

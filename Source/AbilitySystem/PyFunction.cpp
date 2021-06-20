@@ -103,6 +103,11 @@ FString UPyFunction::GetPropStr(FProperty* PropIt, UObject* Object)
 			FQuat* Quat = Prop->ContainerPtrToValuePtr<FQuat>(Object);
 			return Quat->ToString();
 		}
+		else if (Prop->Struct->GetName() == "Color")
+		{
+			FColor* Color = Prop->ContainerPtrToValuePtr<FColor>(Object);
+			return Color->ToString();
+		}
 		else if (Prop->Struct->GetName() == "GameplayAttributeData")
 		{
 			FGameplayAttributeData* Data = Prop->ContainerPtrToValuePtr<FGameplayAttributeData>(Object);
@@ -185,6 +190,11 @@ bool UPyFunction::SetPropStr(FProperty* PropIt, UObject* Object, FString Value)
 		{
 			FQuat* Quat = Prop->ContainerPtrToValuePtr<FQuat>(Object);
 			Quat->InitFromString(Value);
+		}
+		else if (Prop->Struct->GetName() == "Color")
+		{
+			FColor* Color= Prop->ContainerPtrToValuePtr<FColor>(Object);
+			Color->InitFromString(Value);
 		}
 		else if (Prop->Struct->GetName() == "GameplayAttributeData")
 		{
