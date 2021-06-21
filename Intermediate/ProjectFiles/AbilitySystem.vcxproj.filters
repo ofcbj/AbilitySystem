@@ -47,18 +47,6 @@
     <ClInclude Include="..\..\Source\AbilitySystem\AbilitySystem.h">
       <Filter>Source\AbilitySystem</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\AbilitySystem\AbilitySystemCharacter.cpp">
-      <Filter>Source\AbilitySystem</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\AbilitySystem\AbilitySystemCharacter.h">
-      <Filter>Source\AbilitySystem</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\AbilitySystem\AbilitySystemGameMode.cpp">
-      <Filter>Source\AbilitySystem</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\AbilitySystem\AbilitySystemGameMode.h">
-      <Filter>Source\AbilitySystem</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\AbilitySystem\PyFunction.cpp">
       <Filter>Source\AbilitySystem</Filter>
     </ClCompile>
