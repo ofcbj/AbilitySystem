@@ -19,6 +19,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AbilityBase")
 	UMaterialInstance* UIMaterial;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AbilityBase")
+	FString ClassName;
+
 	UFUNCTION(BlueprintCallable, Category = "AbilityBase")
 	FGameplayAbilityInfo GetAbilityInfo();
 };

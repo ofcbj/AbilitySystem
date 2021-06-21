@@ -59,14 +59,14 @@ void ACharacterBase::AcquireAbility(TSubclassOf<UGameplayAbility> AbilityToAquir
 	}
 }
 
-void ACharacterBase::AcquireAbilities(TArray<TSubclassOf<UGameplayAbility>> AbilityToAquire)
+void ACharacterBase::AcquireAbilities(TMap<FString, TSubclassOf<UGameplayAbility>> AbilityToAquire)
 {
-	for (TSubclassOf<UGameplayAbility> AbilityItem : AbilityToAquire)
+	for (auto& Elem: AbilityToAquire)
 	{
-		AcquireAbility(AbilityItem);
-		if (AbilityItem->IsChildOf(UGameplayAbility::StaticClass()))
+		AcquireAbility(Elem.Value);
+		if (Elem.Value->IsChildOf(UGameplayAbility::StaticClass()))
 		{
-			TSubclassOf<UGameplayAbilityBase> AbilityBaseClass = *AbilityItem;
+			TSubclassOf<UGameplayAbilityBase> AbilityBaseClass = *Elem.Value;
 			if (AbilityBaseClass != nullptr)
 			{
 				AddAbilityToUI(AbilityBaseClass);

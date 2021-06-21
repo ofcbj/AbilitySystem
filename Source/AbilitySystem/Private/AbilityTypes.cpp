@@ -7,11 +7,13 @@ FGameplayAbilityInfo::FGameplayAbilityInfo()
 {
 }
 
-FGameplayAbilityInfo::FGameplayAbilityInfo(float InCooldownDuration, float InCost, EAbilityCostType InCostType, UMaterialInstance* InUIMat, TSubclassOf<UGameplayAbilityBase> InAbilityClass)
+FGameplayAbilityInfo::FGameplayAbilityInfo(FString InName, float InCooldownDuration, float InCost, EAbilityCostType InCostType, UMaterialInstance* InUIMat, TSubclassOf<UGameplayAbilityBase> InAbilityClass)
 {
+	Name = InName;
 	CooldownDuration = InCooldownDuration;
 	Cost = InCost;
 	CostType = InCostType;
 	UIMat = InUIMat;
 	AbilityClass = InAbilityClass;
+
 }

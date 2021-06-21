@@ -35,7 +35,7 @@ FGameplayAbilityInfo UGameplayAbilityBase::GetAbilityInfo()
 			{
 				CostType = EAbilityCostType::Strength;
 			}
-			return FGameplayAbilityInfo(CooldownDuration, Cost, CostType, UIMaterial, GetClass());
+			return FGameplayAbilityInfo(ClassName, CooldownDuration, Cost, CostType, UIMaterial, GetClass());
 		}
 	}
 	return FGameplayAbilityInfo();

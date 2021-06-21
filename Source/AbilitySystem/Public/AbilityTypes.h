@@ -36,6 +36,9 @@ struct FGameplayAbilityInfo
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AbilityInfo")
 	TSubclassOf<UGameplayAbilityBase> AbilityClass = nullptr;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AbilityInfo")
+	FString Name;
+
 	FGameplayAbilityInfo();
-	FGameplayAbilityInfo(float InCooldownDuration, float InCost, EAbilityCostType InCostType, UMaterialInstance* InUIMat, TSubclassOf<UGameplayAbilityBase> InAbilityClass);
+	FGameplayAbilityInfo(FString InName, float InCooldownDuration, float InCost, EAbilityCostType InCostType, UMaterialInstance* InUIMat, TSubclassOf<UGameplayAbilityBase> InAbilityClass);
 };
