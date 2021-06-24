@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\AbilitySystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{CC7C0C2B-E577-498D-876E-9DA16E5E112C}</UniqueIdentifier>
+      <UniqueIdentifier>{E305F2BE-EA84-4185-8DC2-6D10641A0265}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AbilitySystem.Target.cs">
       <Filter>Source</Filter>
@@ -13,9 +13,8 @@
     </None>
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
-    <None Include="..\..\Content.zip" />
     <Filter Include="Config">
-      <UniqueIdentifier>{2E064EAB-88DA-4D7E-92B5-FBDBA6029C3D}</UniqueIdentifier>
+      <UniqueIdentifier>{4A6C05CC-8FFE-4CFD-B75C-B77B41F4107C}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -36,7 +35,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\AbilitySystem">
-      <UniqueIdentifier>{208F3213-E02C-4430-92AF-B1FE1990B163}</UniqueIdentifier>
+      <UniqueIdentifier>{C9E93624-85B6-4DF8-BF03-10BC7F55BC46}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AbilitySystem\AbilitySystem.Build.cs">
       <Filter>Source\AbilitySystem</Filter>
@@ -60,7 +59,7 @@
       <Filter>Source\AbilitySystem</Filter>
     </ClInclude>
     <Filter Include="Source\AbilitySystem\Private">
-      <UniqueIdentifier>{84997FC8-C7D7-48AF-BE19-7FAA9FEBA81E}</UniqueIdentifier>
+      <UniqueIdentifier>{2DF7CE65-2AA5-4230-BA7F-F5C9D2575648}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\AbilitySystem\Private\AbilityTypes.cpp">
       <Filter>Source\AbilitySystem\Private</Filter>
@@ -74,6 +73,12 @@
     <ClCompile Include="..\..\Source\AbilitySystem\Private\GameplayAbilityBase.cpp">
       <Filter>Source\AbilitySystem\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\AbilitySystem\Private\GATargetActorCommon.cpp">
+      <Filter>Source\AbilitySystem\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\AbilitySystem\Private\GATargetActorGetAround.cpp">
+      <Filter>Source\AbilitySystem\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\AbilitySystem\Private\GATargetActorGroundSelect.cpp">
       <Filter>Source\AbilitySystem\Private</Filter>
     </ClCompile>
@@ -81,7 +86,7 @@
       <Filter>Source\AbilitySystem\Private</Filter>
     </ClCompile>
     <Filter Include="Source\AbilitySystem\Public">
-      <UniqueIdentifier>{24E259E4-6E42-4717-9947-7FAE991F1B99}</UniqueIdentifier>
+      <UniqueIdentifier>{C1693982-388D-46C8-8762-7F5131491804}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\AbilityTypes.h">
       <Filter>Source\AbilitySystem\Public</Filter>
@@ -93,6 +98,12 @@
       <Filter>Source\AbilitySystem\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\GameplayAbilityBase.h">
+      <Filter>Source\AbilitySystem\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AbilitySystem\Public\GATargetActorCommon.h">
+      <Filter>Source\AbilitySystem\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AbilitySystem\Public\GATargetActorGetAround.h">
       <Filter>Source\AbilitySystem\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\GATargetActorGroundSelect.h">

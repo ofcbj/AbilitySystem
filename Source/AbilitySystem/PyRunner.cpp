@@ -22,7 +22,6 @@ APyRunner::APyRunner()
 
 void APyRunner::Tick(float DeltaTime)
 {
-	
 	if (s_hPipe == NULL)
 	{
 		initPipe();
@@ -45,10 +44,10 @@ DWORD WINAPI RunNamedPipe(VOID* pDatea)
 		DWORD CmdSize = 0;
 		isSuccess = ::ReadFile(s_hPipe, CmdOrg, SCP_SIZE*sizeof(TCHAR), &CmdSize, NULL);
 		memcpy(Cmd, &CmdOrg[1], CmdSize - sizeof(TCHAR));
-		DWORD lengthW = (DWORD)lstrlenW(Cmd) + 1;
-		DWORD lengthA = lengthW*2;
-		char* Scp = new char[lengthA*sizeof(char)];
-		::WideCharToMultiByte(CP_ACP, 0, Cmd, lengthW, Scp, lengthA, NULL, NULL);
+		DWORD LengthW = (DWORD)lstrlenW(Cmd) + 1;
+		DWORD LengthA = LengthW*2;
+		char* Scp = new char[LengthA*sizeof(char)];
+		::WideCharToMultiByte(CP_ACP, 0, Cmd, LengthW, Scp, LengthA, NULL, NULL);
 		s_Scp = FString(Scp);
 		delete[] Scp;
 

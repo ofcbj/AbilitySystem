@@ -6,7 +6,7 @@
 UAttributeSetBase::UAttributeSetBase()
 	:Health(200.0f), MaxHealth(200.0f),
 	Mana(100.0f), MaxMana(100.0f),
-	Strength(200.0f), MaxStrength(250.0f)
+	Strength(250.0f), MaxStrength(250.0f)
 {
 }
 
