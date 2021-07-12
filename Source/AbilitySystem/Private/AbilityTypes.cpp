@@ -15,5 +15,4 @@ FGameplayAbilityInfo::FGameplayAbilityInfo(FString InName, float InCooldownDurat
 	CostType = InCostType;
 	UIMat = InUIMat;
 	AbilityClass = InAbilityClass;
-
 }
