@@ -19,7 +19,8 @@ void UAnimInstanceBase::NativeUpdateAnimation(float DeltaSeconds)
 	Super::NativeUpdateAnimation(DeltaSeconds);
 
 	auto OwnedCharacter = TryGetPawnOwner();
-	if (!::IsValid(OwnedCharacter)) return;
+	if (!::IsValid(OwnedCharacter))
+		return;
 
 	TArray<USkeletalMeshComponent*> MeshComp;
 	OwnedCharacter->GetComponents<USkeletalMeshComponent>(MeshComp);
