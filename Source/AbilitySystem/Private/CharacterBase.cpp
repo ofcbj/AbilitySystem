@@ -200,3 +200,11 @@ bool ACharacterBase::IsDead()
 {
 	return bDead;
 }
+
+void ACharacterBase::ApplyGESpecHandleToTargetDataSpecHandle(const FGameplayEffectSpecHandle GESpecHandle, const FGameplayAbilityTargetDataHandle TargetDataHandle)
+{
+	for (TSharedPtr<FGameplayAbilityTargetData> Data : TargetDataHandle.Data)
+	{
+		Data->ApplyGameplayEffectSpec(*GESpecHandle.Data.Get());
+	}
+}

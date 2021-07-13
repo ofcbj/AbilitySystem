@@ -91,6 +91,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	bool IsDead();
 
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	void ApplyGESpecHandleToTargetDataSpecHandle(const FGameplayEffectSpecHandle GESpecHandle, const FGameplayAbilityTargetDataHandle TargetDataHandle);
+
 protected:
 	bool bDead = false;
 	void Dead();
