@@ -30,5 +30,12 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	FVector MeshSpaceVel;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
+	APawn* OwnedCharacter;
+
+	void NativeBeginPlay() override;
 	void NativeUpdateAnimation(float DeltaSeconds) override;
+
+	class USkeletalMeshComponent* SkeletalMeshComp;
+	class UNavMovementComponent* NavMoveComp;
 };
