@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "AnimInstanceBase.h"
+
 #include "Kismet/KismetMathLibrary.h"
 #include "Gameframework/NavMovementComponent.h"
-
-#include "AnimInstanceBase.h"
 
 void UAnimInstanceBase::AnimNotify_StartFullBody()
 {
