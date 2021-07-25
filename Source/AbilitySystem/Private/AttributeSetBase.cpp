@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "CharacterBase.h"
 #include "AttributeSetBase.h"
+#include "CharacterBase.h"
 
 UAttributeSetBase::UAttributeSetBase()
 	:Health(200.0f), MaxHealth(200.0f),
