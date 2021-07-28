@@ -94,6 +94,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	void ApplyGESpecHandleToTargetDataSpecHandle(const FGameplayEffectSpecHandle GESpecHandle, const FGameplayAbilityTargetDataHandle TargetDataHandle);
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+	FName ClassName;
+
 protected:
 	bool bDead = false;
 	void Dead();

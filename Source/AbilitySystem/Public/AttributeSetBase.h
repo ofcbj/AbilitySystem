@@ -41,6 +41,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
 	FGameplayAttributeData MaxStrength;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
+	FGameplayAttributeData AttackDamage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
+	FGameplayAttributeData Armor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
+	FGameplayAttributeData Combo;
+
 	FOnHealthChangeDelegate OnHealthChange;
 	FOnManaChangeDelegate OnManaChange;
 	FOnStrengthChangeDelegate OnStrengthChange;
