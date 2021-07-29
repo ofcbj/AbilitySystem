@@ -64,6 +64,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnStaminaChanged"))
 	void BP_OnStaminaChanged(float Stamina, float MaxStamina);
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnDamaged"))
+	void BP_OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
+
 	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "Die"))
 	void BP_Die();
 
@@ -97,6 +100,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	FName ClassName;
 
+	void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
 protected:
 	bool bDead = false;
 	void Dead();

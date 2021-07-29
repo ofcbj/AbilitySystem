@@ -208,3 +208,8 @@ void ACharacterBase::ApplyGESpecHandleToTargetDataSpecHandle(const FGameplayEffe
 		Data->ApplyGameplayEffectSpec(*GESpecHandle.Data.Get());
 	}
 }
+
+void ACharacterBase::HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser)
+{
+	BP_OnDamaged(DamageAmount, HitInfo, DamageTags, InstigatorCharacter, DamageCauser);
+}

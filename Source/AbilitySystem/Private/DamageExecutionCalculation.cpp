@@ -11,12 +11,14 @@ struct DamageStatics
 	DECLARE_ATTRIBUTE_CAPTUREDEF(AttackDamage)
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Armor)
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Health)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(Damage)
 
 	DamageStatics()
 	{
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, AttackDamage, Source, true);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Armor, Target, true);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Health, Target, true);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Damage, Target, true);
 
 		AttackDamageTable = LoadObject<UCurveTable>(NULL, UTF8_TO_TCHAR("CurveTable'/Game/Blueprints/Table/AttackDamage.AttackDamage'"));
 	}
@@ -55,5 +57,6 @@ void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCu
 	FKeyHandle KeyHandle = Curve->FindKey(Combo);
 	float Damage = Curve->GetKeyValue(KeyHandle);
 
+	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(DamageStaticsInst().DamageProperty, EGameplayModOp::Override, Damage));
 	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(DamageStaticsInst().HealthProperty, EGameplayModOp::Additive, -1.0f*Damage));
 }

@@ -64,6 +64,10 @@ public:
 	FGameplayAttributeData Combo;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Combo)
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
+	FGameplayAttributeData Damage;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Damage)
+
 	FOnHealthChangeDelegate OnHealthChange;
 	FOnManaChangeDelegate OnManaChange;
 	FOnStaminaChangeDelegate OnStaminaChange;
