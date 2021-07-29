@@ -21,7 +21,7 @@ void ACharacterBase::BeginPlay()
 	Super::BeginPlay();
 	AttributeSetBaseComp->OnHealthChange.AddDynamic(this, &ACharacterBase::OnHealthChanged);
 	AttributeSetBaseComp->OnManaChange.AddDynamic(this, &ACharacterBase::OnManaChanged);
-	AttributeSetBaseComp->OnStrengthChange.AddDynamic(this, &ACharacterBase::OnStrengthChanged);
+	AttributeSetBaseComp->OnStaminaChange.AddDynamic(this, &ACharacterBase::OnStaminaChanged);
 
 	AddGameplayTag(FullHealthTag);
 	
@@ -90,9 +90,9 @@ void ACharacterBase::OnManaChanged(float Mana, float MaxMana)
 	BP_OnManaChanged(Mana, MaxMana);
 }
 
-void ACharacterBase::OnStrengthChanged(float Strength, float MaxStrength)
+void ACharacterBase::OnStaminaChanged(float Stamina, float MaxStamina)
 {
-	BP_OnStrengthChanged(Strength, MaxStrength);
+	BP_OnStaminaChanged(Stamina, MaxStamina);
 }
 
 void ACharacterBase::AddGameplayTag(FGameplayTag TagToAdd)

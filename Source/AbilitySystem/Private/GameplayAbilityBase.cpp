@@ -31,9 +31,9 @@ FGameplayAbilityInfo UGameplayAbilityBase::GetAbilityInfo()
 			{
 				CostType = EAbilityCostType::Mana;
 			}
-			else if (AttributeName == "Strength")
+			else if (AttributeName == "Stamina")
 			{
-				CostType = EAbilityCostType::Strength;
+				CostType = EAbilityCostType::Stamina;
 			}
 			return FGameplayAbilityInfo(ClassName, CooldownDuration, Cost, CostType, UIMaterial, GetClass());
 		}
