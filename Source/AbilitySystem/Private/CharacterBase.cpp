@@ -54,7 +54,6 @@ void ACharacterBase::AcquireAbility(TSubclassOf<UGameplayAbility> AbilityToAquir
 			AbilitySystemComp->GiveAbility(FGameplayAbilitySpec(AbilityToAquire, 1, 0));
 		}
 		AbilitySystemComp->InitAbilityActorInfo(this, this);
-
 	}
 }
 
@@ -72,6 +71,25 @@ void ACharacterBase::AcquireAbilities(TMap<FString, TSubclassOf<UGameplayAbility
 			}
 		}
 	}
+}
+
+void ACharacterBase::GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<UGameplayAbility*>& ActiveAbilities)
+{
+	TArray<FGameplayAbilitySpec*> AbilitiesToActivate;
+	AbilitySystemComp->GetActivatableGameplayAbilitySpecsByAllMatchingTags(AbilityTags, AbilitiesToActivate, false);
+
+	// Iterate the list of all ability specs
+	for (FGameplayAbilitySpec* Spec : AbilitiesToActivate)
+	{
+		// Iterate all instances on this ability spec
+		TArray<UGameplayAbility*> AbilityInstances = Spec->GetAbilityInstances();
+
+		for (UGameplayAbility* ActiveAbility : AbilityInstances)
+		{
+			ActiveAbilities.Add(ActiveAbility);
+		}
+	}
+
 }
 
 void ACharacterBase::OnHealthChanged(float Health, float MaxHealth)

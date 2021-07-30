@@ -46,6 +46,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	void AcquireAbilities(TMap<FString, TSubclassOf<UGameplayAbility>> AbilityToAquire);
 
+	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	void GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<UGameplayAbility*>& ActiveAbilities);
+
 	UFUNCTION()
 	void OnHealthChanged(float Health, float MaxHealth);
 
