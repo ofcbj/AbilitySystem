@@ -91,6 +91,4 @@ void UAttributeSetBase::PostGameplayEffectExecute(const struct FGameplayEffectMo
 		Stamina.SetBaseValue(FMath::Clamp(Stamina.GetBaseValue(), 0.0f, MaxStamina.GetCurrentValue()));
 		OnStaminaChange.Broadcast(Stamina.GetCurrentValue(), MaxStamina.GetCurrentValue());
 	}
-
-
 }
