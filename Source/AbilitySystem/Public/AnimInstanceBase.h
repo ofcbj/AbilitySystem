@@ -21,6 +21,12 @@ private:
 	UFUNCTION()
 	void AnimNotify_StartHalfBody();
 
+	UFUNCTION(BlueprintPure, Category = "CharacterBase")
+	bool IsOwnerAlive();
+
+	UFUNCTION(BlueprintPure, Category = "CharacterBase")
+	bool IsOwnerDead();
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	bool IsFalling;
 

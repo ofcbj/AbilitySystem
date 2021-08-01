@@ -5,6 +5,8 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Gameframework/NavMovementComponent.h"
 
+#include "CharacterBase.h"
+
 void UAnimInstanceBase::AnimNotify_StartFullBody()
 {
 	ShouldDoFullBody = true;
@@ -13,6 +15,26 @@ void UAnimInstanceBase::AnimNotify_StartFullBody()
 void UAnimInstanceBase::AnimNotify_StartHalfBody()
 {
 	ShouldDoFullBody = false;
+}
+
+bool UAnimInstanceBase::IsOwnerAlive()
+{
+	if (OwnedCharacter)
+	{
+		ACharacterBase* Character = Cast<ACharacterBase>(OwnedCharacter);
+		return Character->IsAlive();
+	}
+	return true;
+}
+
+bool UAnimInstanceBase::IsOwnerDead()
+{
+	if (OwnedCharacter)
+	{
+		ACharacterBase* Character = Cast<ACharacterBase>(OwnedCharacter);
+		return Character->IsDead();
+	}
+	return false;
 }
 
 void UAnimInstanceBase::NativeBeginPlay()

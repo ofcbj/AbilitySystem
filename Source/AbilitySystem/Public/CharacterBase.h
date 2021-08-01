@@ -85,7 +85,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	FGameplayTag AliveTag;
 
-	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	UFUNCTION(BlueprintPure, Category = "CharacterBase")
 	bool IsOtherHostile(ACharacterBase* Other);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
@@ -97,8 +97,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	FVector GetLookingPoint();
 
-	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
+	UFUNCTION(BlueprintPure, Category = "CharacterBase")
 	bool IsDead();
+
+	UFUNCTION(BlueprintPure, Category = "CharacterBase")
+	bool IsAlive();
 
 	UFUNCTION(BlueprintCallable, Category = "CharacterBase")
 	void ApplyGESpecHandleToTargetDataSpecHandle(const FGameplayEffectSpecHandle GESpecHandle, const FGameplayAbilityTargetDataHandle TargetDataHandle);
