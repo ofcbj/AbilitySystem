@@ -55,11 +55,9 @@ void AGATargetActorGroundSelect::ConfirmTargetingAndContinue()
 void AGATargetActorGroundSelect::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	//FVector LookPoint = GetPlayerLookingPoint();
+	FVector LookPoint = GetPlayerLookingPoint();
 	//DrawDebugSphere(GetWorld(), LookPoint, Radius, 32, FColor::Red, false, -1, 0, 5.0f);
-	FHitResult HitResult;
-	MasterPC->GetHitResultUnderCursorByChannel(TraceTypeQuery1, true, HitResult);
-	Decal->SetWorldLocation(HitResult.ImpactPoint);
+	Decal->SetWorldLocation(LookPoint);
 }
 
 FVector AGATargetActorGroundSelect::GetPlayerLookingPoint()
