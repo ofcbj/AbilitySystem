@@ -63,8 +63,5 @@ void UAnimInstanceBase::NativeUpdateAnimation(float DeltaSeconds)
 	MeshSpaceVel = UKismetMathLibrary::InverseTransformDirection(TM, Velocity);
 	MeshSpaceVel.X *= -1.0;
 
-	//MeshSpaceVel.X = 0.0;
-	//MeshSpaceVel.Y = -200.0;
-
 	IsFalling = NavMoveComp->IsFalling();
 }
