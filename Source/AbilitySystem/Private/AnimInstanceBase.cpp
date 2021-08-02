@@ -17,6 +17,22 @@ void UAnimInstanceBase::AnimNotify_StartHalfBody()
 	ShouldDoFullBody = false;
 }
 
+void UAnimInstanceBase::NativeUpdateAnimation(float DeltaSeconds)
+{
+	Super::NativeUpdateAnimation(DeltaSeconds);
+
+	if (!::IsValid(OwnedCharacter))
+		return;
+
+	FTransform TM = SkeletalMeshComp->K2_GetComponentToWorld();
+	FVector Velocity = OwnedCharacter->GetVelocity();
+
+	MeshSpaceVel = UKismetMathLibrary::InverseTransformDirection(TM, Velocity);
+	MeshSpaceVel.X *= -1.0;
+
+	IsFalling = NavMoveComp->IsFalling();
+}
+
 bool UAnimInstanceBase::IsOwnerAlive()
 {
 	if (OwnedCharacter)
@@ -48,20 +64,4 @@ void UAnimInstanceBase::NativeBeginPlay()
 	TArray<UNavMovementComponent*> MoveComp;
 	OwnedCharacter->GetComponents<UNavMovementComponent>(MoveComp);
 	NavMoveComp = MoveComp[0];
-}
-
-void UAnimInstanceBase::NativeUpdateAnimation(float DeltaSeconds)
-{
-	Super::NativeUpdateAnimation(DeltaSeconds);
-
-	if (!::IsValid(OwnedCharacter))
-		return;
-
-	FTransform TM = SkeletalMeshComp->K2_GetComponentToWorld();
-	FVector Velocity = OwnedCharacter->GetVelocity();
-
-	MeshSpaceVel = UKismetMathLibrary::InverseTransformDirection(TM, Velocity);
-	MeshSpaceVel.X *= -1.0;
-
-	IsFalling = NavMoveComp->IsFalling();
 }

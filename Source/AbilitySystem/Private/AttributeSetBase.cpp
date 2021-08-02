@@ -47,7 +47,7 @@ void UAttributeSetBase::PostGameplayEffectExecute(const struct FGameplayEffectMo
 		}
 
 		const float LocalDamageDone = GetDamage();
-		SetDamage(0.f);
+		SetDamage(0.f); 
 
 		if (LocalDamageDone > 0)
 		{
