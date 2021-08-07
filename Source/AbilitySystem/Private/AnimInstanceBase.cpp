@@ -53,6 +53,28 @@ bool UAnimInstanceBase::IsOwnerDead()
 	return false;
 }
 
+bool UAnimInstanceBase::IsOwnerMove()
+{
+	if (OwnedCharacter)
+	{
+		return !MeshSpaceVel.IsZero();
+	}
+	return false;
+}
+
+bool UAnimInstanceBase::IsOwnerSpawned()
+{
+	if (IsSpawned)
+	{
+		IsSpawned = false;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void UAnimInstanceBase::NativeBeginPlay()
 {
 	OwnedCharacter = TryGetPawnOwner();

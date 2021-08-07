@@ -21,11 +21,17 @@ private:
 	UFUNCTION()
 	void AnimNotify_StartHalfBody();
 
-	UFUNCTION(BlueprintPure, Category = "CharacterBase")
+	UFUNCTION(BlueprintPure, Category = "CharacterBase", Meta = (BlueprintThreadSafe = true))
 	bool IsOwnerAlive();
 
-	UFUNCTION(BlueprintPure, Category = "CharacterBase")
+	UFUNCTION(BlueprintPure, Category = "CharacterBase", Meta = (BlueprintThreadSafe = true))
 	bool IsOwnerDead();
+
+	UFUNCTION(BlueprintPure, Category = "CharacterBase", Meta = (BlueprintThreadSafe = true))
+	bool IsOwnerMove();
+
+	UFUNCTION(BlueprintPure, Category = "CharacterBase", Meta = (BlueprintThreadSafe = true))
+	bool IsOwnerSpawned();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Pawn, Meta = (AllowPrivateAccess = true))
 	bool IsFalling;
@@ -44,4 +50,6 @@ private:
 
 	class USkeletalMeshComponent* SkeletalMeshComp;
 	class UNavMovementComponent* NavMoveComp;
+
+	bool IsSpawned = true;
 };
