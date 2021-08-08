@@ -22,6 +22,9 @@ void ACharacterBase::BeginPlay()
 	AttributeSetBaseComp->OnHealthChange.AddDynamic(this, &ACharacterBase::OnHealthChanged);
 	AttributeSetBaseComp->OnManaChange.AddDynamic(this, &ACharacterBase::OnManaChanged);
 	AttributeSetBaseComp->OnStaminaChange.AddDynamic(this, &ACharacterBase::OnStaminaChanged);
+	AttributeSetBaseComp->OnPowerChange.AddDynamic(this, &ACharacterBase::OnPowerChanged);
+	AttributeSetBaseComp->OnArmorChange.AddDynamic(this, &ACharacterBase::OnArmorChanged);
+	AttributeSetBaseComp->OnCriticalChange.AddDynamic(this, &ACharacterBase::OnCriticalChanged);
 
 	AddGameplayTag(FullHealthTag);
 	AddGameplayTag(AliveTag);
@@ -111,6 +114,21 @@ void ACharacterBase::OnManaChanged(float Mana, float MaxMana)
 void ACharacterBase::OnStaminaChanged(float Stamina, float MaxStamina)
 {
 	BP_OnStaminaChanged(Stamina, MaxStamina);
+}
+
+void ACharacterBase::OnPowerChanged(float Power)
+{
+	BP_OnPowerChanged(Power);
+}
+
+void ACharacterBase::OnArmorChanged(float Armor)
+{
+	BP_OnArmorChanged(Armor);
+}
+
+void ACharacterBase::OnCriticalChanged(float Critical)
+{
+	BP_OnCriticalChanged(Critical);
 }
 
 void ACharacterBase::AddGameplayTag(FGameplayTag TagToAdd)

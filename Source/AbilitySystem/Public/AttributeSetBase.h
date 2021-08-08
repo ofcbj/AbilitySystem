@@ -16,9 +16,12 @@
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 
- DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangeDelegate, float, Health, float, MaxHealth);
- DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnManaChangeDelegate, float, Mana, float, MaxMana);
- DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnStaminaChangeDelegate, float, Stamina, float, MaxStamina);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangeDelegate, float, Health, float, MaxHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnManaChangeDelegate, float, Mana, float, MaxMana);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnStaminaChangeDelegate, float, Stamina, float, MaxStamina);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPowerChangeDelegate, float, Power);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnArmorChangeDelegate, float, Armor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCriticalChangeDelegate, float, Critical);
 
 UCLASS()
 class ABILITYSYSTEM_API UAttributeSetBase : public UAttributeSet
@@ -53,12 +56,16 @@ public:
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, MaxStamina)
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
-	FGameplayAttributeData AttackDamage;
-	ATTRIBUTE_ACCESSORS(UAttributeSetBase, AttackDamage)
+	FGameplayAttributeData Power;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Power)
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
 	FGameplayAttributeData Armor;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Armor)
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
+	FGameplayAttributeData Critical;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Critical)
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AttributeSetBase")
 	FGameplayAttributeData Combo;
@@ -71,6 +78,9 @@ public:
 	FOnHealthChangeDelegate OnHealthChange;
 	FOnManaChangeDelegate OnManaChange;
 	FOnStaminaChangeDelegate OnStaminaChange;
+	FOnPowerChangeDelegate OnPowerChange;
+	FOnArmorChangeDelegate OnArmorChange;
+	FOnCriticalChangeDelegate OnCriticalChange;
 
 	void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 };

@@ -7,7 +7,7 @@ UAttributeSetBase::UAttributeSetBase()
 	:Health(200.0f), MaxHealth(200.0f),
 	Mana(100.0f), MaxMana(100.0f),
 	Stamina(250.0f), MaxStamina(250.0f),
-	AttackDamage(20.0f), Armor(5.0f),
+	Power(0.0f), Armor(0.0f),
 	Combo(1.0f)
 {
 }
@@ -90,5 +90,30 @@ void UAttributeSetBase::PostGameplayEffectExecute(const struct FGameplayEffectMo
 		Stamina.SetCurrentValue(FMath::Clamp(Stamina.GetCurrentValue(), 0.0f, MaxStamina.GetCurrentValue()));
 		Stamina.SetBaseValue(FMath::Clamp(Stamina.GetBaseValue(), 0.0f, MaxStamina.GetCurrentValue()));
 		OnStaminaChange.Broadcast(Stamina.GetCurrentValue(), MaxStamina.GetCurrentValue());
+	}
+
+	if (Data.EvaluatedData.Attribute == GetManaAttribute())
+	{
+		Mana.SetCurrentValue(FMath::Clamp(Mana.GetCurrentValue(), 0.0f, MaxMana.GetCurrentValue()));
+		Mana.SetBaseValue(FMath::Clamp(Mana.GetBaseValue(), 0.0f, MaxMana.GetCurrentValue()));
+		OnManaChange.Broadcast(Mana.GetCurrentValue(), MaxMana.GetCurrentValue());
+	}
+
+	if (Data.EvaluatedData.Attribute == GetPowerAttribute())
+	{
+		Power.SetCurrentValue(FMath::Clamp(Power.GetCurrentValue(), 0.0f, Power.GetCurrentValue()));
+		OnPowerChange.Broadcast(Power.GetCurrentValue());
+	}
+
+	if (Data.EvaluatedData.Attribute == GetArmorAttribute())
+	{
+		Armor.SetCurrentValue(FMath::Clamp(Armor.GetCurrentValue(), 0.0f, 100.0f));
+		OnArmorChange.Broadcast(Power.GetCurrentValue());
+	}
+
+	if (Data.EvaluatedData.Attribute == GetCriticalAttribute())
+	{
+		Critical.SetCurrentValue(FMath::Clamp(Critical.GetCurrentValue(), 0.0f, 100.0f));
+		OnCriticalChange.Broadcast(Critical.GetCurrentValue());
 	}
 }

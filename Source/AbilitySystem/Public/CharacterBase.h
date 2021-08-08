@@ -67,6 +67,24 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnStaminaChanged"))
 	void BP_OnStaminaChanged(float Stamina, float MaxStamina);
 
+	UFUNCTION()
+	void OnPowerChanged(float Power);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnPowerChanged"))
+	void BP_OnPowerChanged(float Power);
+
+	UFUNCTION()
+	void OnArmorChanged(float Armor);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnArmorChanged"))
+	void BP_OnArmorChanged(float Armor);
+
+	UFUNCTION()
+	void OnCriticalChanged(float Critical);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnCriticalChanged"))
+	void BP_OnCriticalChanged(float Critical);
+
 	UFUNCTION(BlueprintImplementableEvent, Category = "CharacterBase", meta = (DisplayName = "OnDamaged"))
 	void BP_OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ACharacterBase* InstigatorCharacter, AActor* DamageCauser);
 

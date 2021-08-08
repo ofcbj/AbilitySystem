@@ -2,23 +2,26 @@
 
 
 #include "DamageExecutionCalculation.h"
+#include "Math/UnrealMathUtility.h"
 #include "AttributeSetBase.h"
 #include "AbilitySystemComponent.h"
 #include "CharacterBase.h"
 
 struct DamageStatics
 {
-	DECLARE_ATTRIBUTE_CAPTUREDEF(AttackDamage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(Power)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(Critical)
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Armor)
-	DECLARE_ATTRIBUTE_CAPTUREDEF(Health)
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Damage)
+	DECLARE_ATTRIBUTE_CAPTUREDEF(Health)
 
 	DamageStatics()
 	{
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, AttackDamage, Source, true);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Power, Source, true);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Critical, Source, true);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Armor, Target, true);
-		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Health, Target, true);
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Damage, Target, true);
+		DEFINE_ATTRIBUTE_CAPTUREDEF(UAttributeSetBase, Health, Target, true);
 
 		AttackDamageTable = LoadObject<UCurveTable>(NULL, UTF8_TO_TCHAR("CurveTable'/Game/Blueprints/Table/AttackDamage.AttackDamage'"));
 	}
@@ -34,9 +37,9 @@ static DamageStatics& DamageStaticsInst()
 
 UDamageExecutionCalculation::UDamageExecutionCalculation()
 {
-	RelevantAttributesToCapture.Add(DamageStaticsInst().AttackDamageDef);
+	RelevantAttributesToCapture.Add(DamageStaticsInst().PowerDef);
 	RelevantAttributesToCapture.Add(DamageStaticsInst().ArmorDef);
-
+	RelevantAttributesToCapture.Add(DamageStaticsInst().CriticalDef);
 }
 
 void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
@@ -56,6 +59,23 @@ void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCu
 	FRealCurve* Curve = DamageStaticsInst().AttackDamageTable->FindCurve(SourceCharacter->ClassName, ContextString);
 	FKeyHandle KeyHandle = Curve->FindKey(Combo);
 	float Damage = Curve->GetKeyValue(KeyHandle);
+
+	float PowerMagnitude = 0.0f;
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStaticsInst().PowerDef, FAggregatorEvaluateParameters(), PowerMagnitude);
+	
+	float ArmorMagnitude = 0.0f;
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStaticsInst().ArmorDef, FAggregatorEvaluateParameters(), ArmorMagnitude);
+
+	float CriticalMagnitude = 0.0f;
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStaticsInst().CriticalDef, FAggregatorEvaluateParameters(), CriticalMagnitude);
+
+	Damage += Damage*(PowerMagnitude/100.0f);
+	Damage -= Damage*(ArmorMagnitude/100.0f);
+
+	if (FMath::RandRange(0.0f, 100.0f) < CriticalMagnitude)
+	{
+		Damage *= 2.0f;
+	}
 
 	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(DamageStaticsInst().DamageProperty, EGameplayModOp::Override, Damage));
 	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(DamageStaticsInst().HealthProperty, EGameplayModOp::Additive, -1.0f*Damage));
