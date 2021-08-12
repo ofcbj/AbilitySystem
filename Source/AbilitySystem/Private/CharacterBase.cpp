@@ -33,7 +33,7 @@ void ACharacterBase::BeginPlay()
 // Called every frame
 void ACharacterBase::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);  
+	Super::Tick(DeltaTime);
 }
 
 // Called to bind functionality to input
