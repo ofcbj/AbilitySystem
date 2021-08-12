@@ -57,6 +57,11 @@ void UDamageExecutionCalculation::Execute_Implementation(const FGameplayEffectCu
 
 	FString ContextString;
 	FRealCurve* Curve = DamageStaticsInst().AttackDamageTable->FindCurve(SourceCharacter->ClassName, ContextString);
+	if (Curve == NULL)
+	{
+		check(Curve);
+		return;
+	}
 	FKeyHandle KeyHandle = Curve->FindKey(Combo);
 	float Damage = Curve->GetKeyValue(KeyHandle);
 
