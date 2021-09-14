@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\AbilitySystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{6137D21B-0ABD-4A2F-9296-F4864BE3F95A}</UniqueIdentifier>
+      <UniqueIdentifier>{BA1C623A-334C-4B4D-A70F-AB960ACBBF7D}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AbilitySystem.Target.cs">
       <Filter>Source</Filter>
@@ -14,7 +14,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{556976FA-06B1-405B-870F-7C5899CC6DC6}</UniqueIdentifier>
+      <UniqueIdentifier>{6198D389-E0F6-44DC-A763-8110942AC09C}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -35,7 +35,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\AbilitySystem">
-      <UniqueIdentifier>{53B004C4-2D31-4AB0-BF2F-E86D456CE9AD}</UniqueIdentifier>
+      <UniqueIdentifier>{05CC5BDB-2043-4F3F-BEFC-E11BD0397155}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AbilitySystem\AbilitySystem.Build.cs">
       <Filter>Source\AbilitySystem</Filter>
@@ -59,7 +59,7 @@
       <Filter>Source\AbilitySystem</Filter>
     </ClInclude>
     <Filter Include="Source\AbilitySystem\Private">
-      <UniqueIdentifier>{A5C84FF3-B1D7-4CD2-ABEA-C36A899CB0C2}</UniqueIdentifier>
+      <UniqueIdentifier>{9896FF08-6F3C-43C3-984D-FB6E68C0462B}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\AbilitySystem\Private\AbilityTypes.cpp">
       <Filter>Source\AbilitySystem\Private</Filter>
@@ -91,8 +91,11 @@
     <ClCompile Include="..\..\Source\AbilitySystem\Private\PlayerControllerBase.cpp">
       <Filter>Source\AbilitySystem\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\AbilitySystem\Private\TestObject.cpp">
+      <Filter>Source\AbilitySystem\Private</Filter>
+    </ClCompile>
     <Filter Include="Source\AbilitySystem\Public">
-      <UniqueIdentifier>{49E2532C-4297-49DB-9A26-4F24E416C673}</UniqueIdentifier>
+      <UniqueIdentifier>{F31D9DD4-7808-414C-8206-A6C2B8A6C90A}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\AbilityTypes.h">
       <Filter>Source\AbilitySystem\Public</Filter>
@@ -122,6 +125,9 @@
       <Filter>Source\AbilitySystem\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\PlayerControllerBase.h">
+      <Filter>Source\AbilitySystem\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AbilitySystem\Public\TestObject.h">
       <Filter>Source\AbilitySystem\Public</Filter>
     </ClInclude>
   </ItemGroup>
