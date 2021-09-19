@@ -32,10 +32,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	UAbilitySystemComponent* AbilitySystemComp;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "CharacterBase")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CharacterBase")
 	UAttributeSetBase* AttributeSetBaseComp;
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
