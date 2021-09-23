@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\AbilitySystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{68EEC477-5D79-4B96-B0CC-51F874E9A327}</UniqueIdentifier>
+      <UniqueIdentifier>{A7D2A8C6-8E86-4E13-B294-D02436050CD1}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AbilitySystem.Target.cs">
       <Filter>Source</Filter>
@@ -14,7 +14,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{55B5F9EA-CBED-4689-BF00-8B441BDCEADE}</UniqueIdentifier>
+      <UniqueIdentifier>{3895E706-CB4E-4FC6-B4D7-A370834678B9}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -35,7 +35,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\AbilitySystem">
-      <UniqueIdentifier>{9447479B-C2D6-4D0C-9ECE-8CA67D002C30}</UniqueIdentifier>
+      <UniqueIdentifier>{4EDB4FCF-F744-40D4-A1E9-3ED2C8E0FA46}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\AbilitySystem\AbilitySystem.Build.cs">
       <Filter>Source\AbilitySystem</Filter>
@@ -59,7 +59,7 @@
       <Filter>Source\AbilitySystem</Filter>
     </ClInclude>
     <Filter Include="Source\AbilitySystem\Private">
-      <UniqueIdentifier>{898E1B32-8FCE-464A-BB64-FB99A3189200}</UniqueIdentifier>
+      <UniqueIdentifier>{77001017-D93E-4D86-9058-62ADC3C91287}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\AbilitySystem\Private\AbilityTypes.cpp">
       <Filter>Source\AbilitySystem\Private</Filter>
@@ -74,6 +74,9 @@
       <Filter>Source\AbilitySystem\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\AbilitySystem\Private\DamageExecutionCalculation.cpp">
+      <Filter>Source\AbilitySystem\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\AbilitySystem\Private\EnvQueryGenerator_Opponent.cpp">
       <Filter>Source\AbilitySystem\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\AbilitySystem\Private\GameplayAbilityBase.cpp">
@@ -98,7 +101,7 @@
       <Filter>Source\AbilitySystem\Private</Filter>
     </ClCompile>
     <Filter Include="Source\AbilitySystem\Public">
-      <UniqueIdentifier>{107C4F6E-A297-499E-B323-300153EB0FFB}</UniqueIdentifier>
+      <UniqueIdentifier>{9853FB66-EC74-465D-BE7E-1FF004E4DF70}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\AbilityTypes.h">
       <Filter>Source\AbilitySystem\Public</Filter>
@@ -113,6 +116,9 @@
       <Filter>Source\AbilitySystem\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\DamageExecutionCalculation.h">
+      <Filter>Source\AbilitySystem\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AbilitySystem\Public\EnvQueryGenerator_Opponent.h">
       <Filter>Source\AbilitySystem\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AbilitySystem\Public\GameplayAbilityBase.h">
